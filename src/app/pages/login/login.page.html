@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-item>
+    <ion-label position="stacked">Nome e sobrenome</ion-label>
+    <ion-input type="text" [(ngModel)]="name" value=""></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="stacked">E-mail</ion-label>
+    <ion-input type="email" value=""></ion-input>
+  </ion-item>
+
+  <ion-item *ngIf="exibirTerceiroCampo">
+    <ion-label position="stacked">Outro</ion-label>
+    <ion-input type="email" value=""></ion-input>
+  </ion-item>
+
+  <ion-button type="button" (click)="Validar()">Avaliar</ion-button>
+  
+</ion-content>
