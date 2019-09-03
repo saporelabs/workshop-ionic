@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>listarusuario</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <h6>Pagina de listagem</h6>
+  <table border="1" style="margin-left:20px;" >
+    <tr>
+      <td>Name</td>
+      <td>Email</td>
+      <td>Foto</td>
+    </tr>
+
+    <tr *ngFor="let usuario of users">
+      <td>{{usuario.name}}</td>
+      <td>{{usuario.email}}</td>
+      <td>
+          <p *ngFor="let rua of usuario.enderecos">
+            {{rua}}
+              <button>Remover</button>
+          </p>
+      </td>
+    </tr>
+  </table>
+  
+
+</ion-content>

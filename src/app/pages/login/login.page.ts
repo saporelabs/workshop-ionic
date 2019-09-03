@@ -10,28 +10,41 @@ import { User } from 'src/app/model/user';
 export class LoginPage implements OnInit {
 
   public name: string;
-  public exibirTerceiroCampo: boolean;
+  public exibirErroCampo: boolean;
+  public cadastroSucesso: boolean;
+  public endereco: any;
 
   constructor(private servicoUsuario: UserService) {
   }
 
   ngOnInit() {
     this.name = 'sapore';
-    this.exibirTerceiroCampo = false;
+    this.exibirErroCampo = false;
+    this.cadastroSucesso = false;
   }
 
   Validar() {
-    this.exibirTerceiroCampo = false;
-    if (this.name === 'marco') {
-      this.exibirTerceiroCampo = true;
-      console.log('taca lhe pau no carrinho');
-    }
+    this.exibirErroCampo = false;
+    this.cadastroSucesso = false;
 
     let novoUsuario = new User();
     novoUsuario.name = this.name;
 
-    this.servicoUsuario.enviarUsuario(novoUsuario).subscribe(resp => {
+    this.servicoUsuario.pesquisarCEP(novoUsuario.name).subscribe(resp =>{
       console.log(resp);
+      this.endereco = resp;
     });
+
+    /*this.servicoUsuario.enviarUsuario(novoUsuario).subscribe(resp => {
+      console.log(resp);
+    }, resp => {
+      if (resp.status === 401) {
+        this.exibirErroCampo = true;
+        
+      }
+      if (resp.status === 201) {
+        this.cadastroSucesso = true;
+      }
+    });*/
   }
 }

@@ -13,6 +13,14 @@ export class UserService {
 
   }
 
+  pesquisarCEP(cep: string) {
+    return this.http.get("http://viacep.com.br/ws/" + cep + "/json/");
+  }
+
+  listarUsuarios() {
+    return this.http.get<Array<User>>(environment.api.baseurl + "/users");
+  }
+
   enviarUsuario(user: User) {
     console.log('entro service');
     return this.http.post(environment.api.baseurl + '/users', user);

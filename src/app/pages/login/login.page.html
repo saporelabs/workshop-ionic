@@ -6,21 +6,42 @@
 
 <ion-content>
 
+  
+
+  <div *ngIf="!cadastroSucesso">
   <ion-item>
     <ion-label position="stacked">Nome e sobrenome</ion-label>
     <ion-input type="text" [(ngModel)]="name" value=""></ion-input>
   </ion-item>
+  <ion-button type="button" (click)="Validar()">Preencher CEP</ion-button>
+
+  <ion-item *ngIf="endereco != undefined">
+      <ion-label position="stacked">Endereco</ion-label>
+      {{endereco.logradouro}}
+    </ion-item>
+    <ion-item *ngIf="endereco != undefined">
+        <ion-label position="stacked">Cidade</ion-label>
+        {{endereco.localidade}}
+      </ion-item>
 
   <ion-item>
     <ion-label position="stacked">E-mail</ion-label>
     <ion-input type="email" value=""></ion-input>
   </ion-item>
 
-  <ion-item *ngIf="exibirTerceiroCampo">
-    <ion-label position="stacked">Outro</ion-label>
-    <ion-input type="email" value=""></ion-input>
+
+  <ion-button type="button" (click)="Validar()">Enviar</ion-button>
+</div>
+  <div *ngIf="exibirErroCampo" class="boxMensagem" >
+    Algum campo foi preenchido incorretamente.
+  </div>
+
+  <ion-item *ngIf="cadastroSucesso">
+    <div class="boxMensagem">
+      Cadastro realizado com sucesso
+    </div>
   </ion-item>
 
-  <ion-button type="button" (click)="Validar()">Avaliar</ion-button>
+  
   
 </ion-content>
